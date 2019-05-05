@@ -31,10 +31,10 @@ ImportCsvTest
     sleep    ${Delay}
     Is page loaded
     sleep    ${Delay}
-    Unselect Frame
-    selectFrame
     addCalendar
+    sleep    ${Delay}
     clickImport
+    sleep    ${Delay}
     [Teardown]    Close Browser
 
 *** Keywords ***
@@ -62,10 +62,11 @@ Open Browser to the Login Page
     Maximize Browser Window
 
 addCalendar
-    Click Element    //div[@class='U26fgb JRtysb WzwrXb I12f0b K2mXPb oFBMuc']
+    Set Focus To Element    //div[@class='U26fgb JRtysb WzwrXb I12f0b K2mXPb oFBMuc']
+    Sleep    ${Delay}
+    Click Element    //div[@class='NcbWHe']
 
 clickImport
+    Element Should Be Visible    //DIV[@class='jO7h3c'][text()='Importálás']
+    Set Focus To Element    //DIV[@class='jO7h3c'][text()='Importálás']
     Click Element    //DIV[@class='jO7h3c'][text()='Importálás']
-
-selectFrame
-    SeleniumLibrary.Select Frame    apiproxy3e2813cfcfffd2e8b19b70ebb2e7332a4f09990b0.1889077214
