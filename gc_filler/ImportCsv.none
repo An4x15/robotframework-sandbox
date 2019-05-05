@@ -1,0 +1,46 @@
+*** Settings ***
+Library           SeleniumLibrary    # SeleniumLib
+
+*** Variables ***
+${Username}       testuser@geeksyndicate.info
+${Password}       qwerAa11
+${Browser}        gc
+${SiteUrl}        https://calendar.google.com/
+${DashboardTitle}    -
+${Delay}          2s
+
+*** Test Cases ***
+ImportCsv Test
+    Open Browser to the Login Page
+    Enter User Name
+    Click NextUID
+    sleep    ${Delay}
+    Enter Password
+    Click NextPw
+    sleep    ${Delay}
+    Is page loaded
+    [Teardown]    Close Browser
+
+*** Keywords ***
+Open Browser to the Login Page
+    open browser    ${SiteUrl}    ${Browser}
+    Maximize Browser Window
+
+Enter User Name
+    Input Text    //input[@id='identifierId']    ${Username}
+
+Click NextUID
+    Click Element    //div[@id='identifierNext']
+
+Enter Password
+    Input Text    //input[@name='password']    ${Password}
+
+Click NextPw
+    Click Element    //div[@id='passwordNext']
+
+Is page loaded
+    Element Should Be Visible    //a[@class='gb_x']
+
+Click NextPwPW
+    Click Element    //div[@id='passwordNext']
+    Click Element    //div[@id='passwordNext']
